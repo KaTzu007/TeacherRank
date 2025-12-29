@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<section data-bs-version="5.1" class="header09 cid-tLAX5BnXkJ" id="header09-q">
+		<div class="container">
+			<div class="row">
+				<div class="content-wrap col-12 col-md-8">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section data-bs-version="5.1" class="start article6 cid-uTpozP7pIO" id="article06-1l">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="card col-md-12 col-lg-12">
+					<div class="card-wrapper">
+						<div class="card-box align-left">
+							<h4 class="card-title mbr-fonts-style display-2"><strong>​Empowering Students to Choose Wisely</strong></h4>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section data-bs-version="5.1" class="features027 cid-uTppBatdfo" id="features027-1m">
+		
+
+		
+		
+
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12 content-head mb-5">
+					<h1 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>Making Informed Choices for Next Semester</strong></h1>
+					<p class="mbr-text mbr-fonts-style mt-4 mb-0 display-7">
+						Our team is dedicated to helping students choose the right path. By reading reviews on teachers and courses, students can make well-informed decisions for the next semester.
+					</p>
+				</div>
+			</div>
+
+
+			<div class="row justify-content-center  blockContent">
+				<div class="col-12 col-lg">
+					
+					<div class="item features-without-image col-12 col-md-12 col-lg-12 active">
+						<div class="item-wrapper">
+							<div class="item-content">
+								
+								
+								<p class="card-text mbr-fonts-style mt-0 mb-0 display-7">
+									Semester Choices
+								</p>
+								
+							</div>
+
+						</div>
+					</div>
+					<div class="item features-without-image col-12 col-md-12 col-lg-12">
+						<div class="item-wrapper">
+							<div class="item-content">
+								
+								
+								<p class="card-text mbr-fonts-style mt-0 mb-0 display-7">
+									Educator Ratings
+								</p>
+								
+							</div>
+						</div>
+					</div><div class="item features-without-image col-12 col-md-12 col-lg-12">
+						<div class="item-wrapper">
+							<div class="item-content">
+								
+								
+								<p class="card-text mbr-fonts-style mt-0 mb-0 display-7">
+									Teacher Reviews
+								</p>
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-lg-6">
+					<div class="image-wrapper">
+						<img class="w-100" src="assets/images/rate-1256x837.jpg" alt="Photo">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section data-bs-version="5.1" class="features03 cid-uTpqXnmNKd" id="features03-1n">
+		
+		
+		<div class="container">
+			<div class="row justify-content-center mb-5">
+				<div class="col-12 content-head">
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="item features-image col-12 col-md-6 col-lg-4 active">
+					<div class="item-wrapper">
+						<a href="{{ url_for('reviews.search_reviews') }}">
+							<div class="item-img mb-3">
+								<img src="assets/images/search-512x512.png" alt="Search Reviews" title="">
+							</div>
+						</a>
+						
+						<div class="item-content align-left">
+							<div class="mbr-section-btn item-footer"><a href="{{ url_for('reviews.search_reviews') }}" class="btn item-btn btn-primary display-7">Search for Reviews</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="item features-image col-12 col-md-6 col-lg-4">
+					<div class="item-wrapper">
+						<a href="{{ url_for('reviews.add_review') }}">
+							<div class="item-img mb-3">
+								<img src="assets/images/plus-512x512.png" alt="Add Review" title="" data-slide-to="1" data-bs-slide-to="1">
+							</div>
+						</a>
+						
+						<div class="item-content align-left">
+							<div class="mbr-section-btn item-footer"><a href="{{ url_for('reviews.add_review') }}" class="btn item-btn btn-primary display-7">Add Review</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="item features-image col-12 col-md-6 col-lg-4">
+					<div class="item-wrapper">
+						<a href="{{ url_for('reviews.ratings') }}">
+							<div class="item-img mb-3">
+								<img src="assets/images/star-512x512.png" alt="Ratings" title="" data-slide-to="2" data-bs-slide-to="2">
+							</div>
+						</a>
+						<div class="item-content align-left">
+							<div class="mbr-section-btn item-footer"><a href="{{ url_for('reviews.ratings') }}" class="btn item-btn btn-primary display-7">Ratings</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

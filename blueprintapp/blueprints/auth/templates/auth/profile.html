@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        h2 {
+            padding-top: 25px;
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .profile {
+            display: flex;
+            justify-content: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            max-width: 300px;
+            margin: 0 auto 20px auto;
+        }
+
+        .profile-left {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .avatar-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            padding-left: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .edit-form input, .edit-form button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .edit-form button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .edit-form button:hover {
+            background-color: #e57373;
+        }
+
+        .edit-form button:active {
+            background-color: #f28b82;
+            transform: scale(0.97);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+        .icon-btn img {
+            width: 34px;
+            height: 34px;
+        }
+
+        .logout-btn {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .logout-btn:hover {
+            background-color: #e57373;
+        }
+        .logout-btn:active {
+            background-color: #f28b82;
+            transform: scale(0.97);
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            width: 300px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .comment {
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .btn {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #e57373;
+        }
+        .btn:active {
+            background-color: #f28b82;
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile">
+        <div class="profile-left">
+            <div class="avatar-row">
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile Avatar" class="avatar-img">
+
+                <button class="icon-btn" onclick="window.location.href='/'">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home">
+                </button>
+
+                <form action="{{ url_for('auth.logout') }}" method="POST">
+                    <button type="submit" class="logout-btn">Log out</button>
+                </form>
+            </div>
+
+            <div class="profile-info">
+                <strong>{{ user.username }}</strong><br>
+                {{ user.email }}
+            </div>
+
+            <form action="{{ url_for('auth.profile') }}" method="POST" class="edit-form">
+                <input type="text" name="username" placeholder="Enter a new username">
+                <input type="password" name="new_password" placeholder="Enter a new password">
+                <button type="submit">Save Changes</button>
+            </form>
+
+            {% if error %}
+                <p class="text-center" style="color:red; margin-top: 15px;">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <h2>User Reviews</h2>
+
+    <h2>Reviews About the Teacher</h2>
+    {% if teachReviews %}
+        <div class="reviews-container">
+            {% for review in teachReviews %}
+                <div class="card">
+                    <p><strong>Teacher:</strong> {{review.surname}} {{review.name}} </p>
+                    <p><strong>Discipline:</strong> {{review.discipline_name}} </p>
+                    <p><strong>Difficulty:</strong> {{review.difficulty}} </p>
+                    <p><strong>Rating:</strong> {{review.rating}} / 10</p>
+                    <div class="comment">
+                        {{review.feedback}}
+                    </div>
+                    <p>{{review.time}}</p>
+                    <form action="{{ url_for('reviews.delete_teacher_review') }}" method="POST">
+                        <input type="hidden" name="review_id" value="{{ review.id }}">
+                        <button type="submit" class="btn">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h4 style="text-align: center; color: indianred;">No Data</h4>
+    {% endif %}
+
+    <h2>Reviews About the Discipline</h2>
+    {% if disReviews %}
+        <div class="reviews-container">
+            {% for review in disReviews %}
+                <div class="card">
+                    <p><strong>Discipline:</strong> {{review.name}} </p>
+                    <p><strong>Difficulty:</strong> {{review.difficulty}} </p>
+                    <p><strong>Rating:</strong> {{review.rating}} / 10</p>
+                    <div class="comment">
+                        {{review.feedback}}
+                    </div>
+                    <p>{{review.time}}</p>
+                    <form action="{{ url_for('reviews.delete_discipline_review') }}" method="POST">
+                        <input type="hidden" name="review_id" value="{{ review.id }}">
+                        <button type="submit" class="btn">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h4 style="text-align: center; color: indianred;">No Data</h4>
+    {% endif %}
+    
+</body>
+</html>

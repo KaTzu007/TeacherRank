@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v6.0.6, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/tr-728x121.png" type="image/x-icon">
+  <meta name="description" content="">
+  
+  
+  <title>Search for Review About the Teacher</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=PK09LG"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=PK09LG" type="text/css">
+
+  
+  
+  
+</head>
+<body>
+
+  <section data-bs-version="5.1" class="menu menu5 cid-uUJJetHLDz" once="menu" id="menu05-s">
+	
+
+	<nav class="navbar navbar-dropdown navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				<span class="navbar-logo">
+					<a href="{{ url_for('core.index') }}">
+						<img src="assets/images/tr-728x121.png" alt="TeacherRank" style="height: 3.8rem;">
+					</a>
+				</span>
+				
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<a href="{{ url_for('auth.profile') }}">
+					<img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" 
+						alt="Profile Avatar" 
+						class="rounded-circle" 
+						style="width:80px; height:80px; cursor:pointer;">
+				</a>
+			</div>
+		</div>
+	</nav>
+</section>
+
+<section data-bs-version="5.1" class="form5 cid-uUJMaW7xbb" id="form02-u">
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 content-head">
+                <div class="mbr-section-head mb-5">
+                    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                        <strong>Details</strong></h3>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                <form action="{{ url_for('reviews.search_teacher') }}" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name">
+                    <div class="dragArea row">
+                        
+                        <div class="col-12 form-group mb-3" data-for="discipline">
+                            <select name="teacher_id" id="teacher" class="form-control">
+                                <option value="" disabled selected hidden>-- A teacher --</option>
+                                {% for teacher in teachers %}
+                                    <option value="{{ teacher.id }}">{{ teacher.name }} {{ teacher.surname }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-12 form-group mb-3" data-for="discipline">
+                            <select name="discipline_id" id="discipline" class="form-control">
+                                <option value="" disabled selected hidden>-- A discipline --</option>
+                                {% for discipline in disciplines %}
+                                    <option value="{{ discipline.id }}">{{ discipline.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="col-12 form-group mb-3" data-for="difficulty">
+                            <select name="difficulty" id="difficulty" class="form-control">
+                                <option value="" disabled selected hidden>-- Difficulty level of the teacher --</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 form-group mb-3" data-for="rating">
+                            <select name="rating" id="rating" class="form-control">
+                                <option value="" disabled selected hidden>-- Teacher Rating(greater than) --</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 form-group mb-3" data-for="time">
+                            <select name="time" id="time" class="form-control">
+                                <option value="" disabled selected hidden>-- Sort by Time --</option>
+                                <option value="old">Oldest</option>
+                                <option value="new">Newest</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-primary display-7">Search for Teacher</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if reviews %}
+        <div class="reviews-container">
+            {% for review in reviews %}
+                <div class="rev_card">
+                    <p><strong>Teacher:</strong> {{review.surname}} {{review.name}} </p>
+                    <p><strong>Discipline:</strong> {{review.discipline_name}} </p>
+                    <p><strong>Difficulty:</strong> {{review.difficulty}} </p>
+                    <p><strong>Rating:</strong> {{review.rating}} / 10</p>
+                    <div class="comment">
+                        {{review.feedback}}
+                    </div>
+                    <p>{{review.time}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h4 style="text-align: center; color: indianred;">No Data</h4>
+    {% endif %}
+</section>
+
+<section data-bs-version="5.1" class="footer4 cid-uUJJeu5hGg" once="footers" id="footer04-t">
+
+    
+
+    
+
+    <div class="container">
+        <div class="media-container-row align-center mbr-white">
+            <div class="col-12">
+                <p class="mbr-text mb-0 mbr-fonts-style display-7">
+                    Feedback is crucial for growth. Providing constructive feedback can help other students improve their work and reach their full potential.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
