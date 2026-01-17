@@ -22,7 +22,7 @@
 1. Клонирование репозитория
 
 ```bash
-git clone [https://github.com/MY_USERNAME/TeacherRank.git](https://github.com/YOUR_USERNAME/TeacherRank.git)
+git clone https://github.com/MY_USERNAME/TeacherRank.git
 cd TeacherRank
 ```
 
@@ -37,7 +37,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-5. Настройка переменных окружения
+4. Настройка переменных окружения
 В проекте используется файл .env для хранения секретных ключей. Создайте файл .env в корне проекта (на основе .env.example) и добавьте свои данные:
 ```
 SECRET_KEY=ваш_секретный_ключ
@@ -45,13 +45,13 @@ DATABASE_URL=postgresql+psycopg2://postgres:password@localhost:5432/teacherRank
 ```
 Важно: Убедитесь, что у вас установлен PostgreSQL и создана база данных с именем teacherRank.
 
-7. Применение миграций БД
+5. Применение миграций БД
 Чтобы создать таблицы в базе данных:
 ```
 flask db upgrade
 ```
 
-9. Запуск приложения
+6. Запуск приложения
 ```
 python run.py
 ```
